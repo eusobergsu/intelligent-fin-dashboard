@@ -1,7 +1,8 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    APP_NAME: str = "Intelligent Financial Dashboard"
+    APP_NAME: str = "Intelligent Finance Dashboard"
+    API_VERSION: str = "v1"
 
     class Config:
         env_file = ".env"
