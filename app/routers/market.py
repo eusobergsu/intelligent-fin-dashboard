@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.services.market_service import get_market_summary, get_stock_history
+from app.services.market_service import get_market_summary
 
 router = APIRouter(prefix="/market", tags=["market"])
 
@@ -7,7 +7,7 @@ router = APIRouter(prefix="/market", tags=["market"])
 def market_summary():
     summary = get_market_summary()
 
-    # converter dict → lista
+    # Converter índices dict -> lista
     data_list = [
         {"name": name, "value": value}
         for name, value in summary["indices"].items()
@@ -18,8 +18,3 @@ def market_summary():
         "sentiment": summary["sentiment"],
         "timestamp": summary["timestamp"],
     }
-
-
-@router.get("/history/{symbol}")
-def stock_history(symbol: str, days: int = 5):
-    return get_stock_history(symbol, days)
